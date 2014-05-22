@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    function onInputFocus(c) {
+        var control = $(c);
+        var isDirty = control.attr('isDirty');
+        var v = control.attr('v');
+
+        if (isDirty == 'false') {
+            control.val('');
+        }
+    }
+
+    function onInputBlur(c) {
+        var control = $(c);
+
+        if (control.attr('isDirty') == 'false') {
+            control.val(control.attr('v'));
+        }
+    }
+
+    function onInputKeydown(c) {
+        var control = $(c);
+
+        if (control.val() == '') {
+            control.attr('isDirty', 'false');
+        } else {
+            control.attr('isDirty', 'true');
+        }
+    }
+</script>
+<h4>联系我们</h4>
+<div class="form-group footer_form_group">
+    <input id="txt_contact_name" type="text" class="form-control input-sm" required="true" value="姓名:"
+    v="姓名:" isDirty="false" onfocus="onInputFocus(this)" onblur="onInputBlur(this)" onkeydown="onInputKeydown(this)"/>
+    <label id="lbl_msg_name" class="error hidden">请填写姓名</label>
+</div>
+<div class="form-group footer_form_group">
+    <input id="txt_contact_email" type="text" class="form-control input-sm" required="true" value="邮箱:"
+    v="邮箱:" isDirty="false" onfocus="onInputFocus(this)" onblur="onInputBlur(this)" onkeydown="onInputKeydown(this)"/>
+    <label id="lbl_msg_email" class="error hidden">请填写正确的邮箱</label>
+</div>
+<div class="form-group footer_form_group">
+    <input id="txt_contact_phone" type="text" class="form-control input-sm" required="true" value="电话:"
+    v="电话:" isDirty="false" onfocus="onInputFocus(this)" onblur="onInputBlur(this)" onkeydown="onInputKeydown(this)"/>
+    <label id="lbl_msg_phone" class="error hidden">请填写正确的电话号码</label>
+</div>
+<div class="form-group footer_form_group">
+    <textarea id="txt_contact_message" class="form-control input-sm" required="true" v="留言:"
+    isDirty="false" onfocus="onInputFocus(this)" onblur="onInputBlur(this)" onkeydown="onInputKeydown(this)">留言:</textarea>
+    <label id="lbl_msg_message" class="error hidden">请填写留言</label>
+</div>
+<div class="form-group footer_form_group">
+    <input id="btn_email_send" type="button" class="btn btn-default" value="发送"/>
+</div>
+<div class="form-group footer_form_group">
+    <label class="confirm" id="lbl_confirm_message">
+</div>

@@ -1,0 +1,31 @@
+<div id="admin_panel">
+    <div>
+        <h2>用户控制面板</h2>
+        <a id="link_logout" class="link-logout">退出</a>
+    <div>
+    <h4>欢迎 <%= user_name %></h4>
+    <div id="adminuserinfo">
+        <div>用户ID: <%= user_id %></div>
+        <div>用户创建时间: <%= created %></div>
+        <div>用户上次修改时间: <%= modified %></div>
+    </div>
+    <div class="inventory-wrapper">
+        <div id="inventory_box">
+            <h4>创建您的库存</h4>
+            <form id="inventory_form"></form>
+            <div class="clearfix"></div>
+            <!-- Dropzone like form -->
+            <div id="dropzone_error" class="error"></div>
+            <div class="dropzone" id="dropzone"></div>
+            <div id="dropzonepreview_container">
+                <h5>预览</h5>
+                <div id="dropzonepreview"></div>
+            </div>
+            <input type="button" class="btn btn-lg btn-primary btn-block" value="创建" id="create" />
+        </div>
+        <div id="inventories">
+            <h4>管理您的库存</h4>
+            <div id="inventories_container"></div>
+        </div>
+    </div>
+</div>

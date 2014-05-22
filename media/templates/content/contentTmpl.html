@@ -1,0 +1,47 @@
+<div class="feature">
+    <div id="heading_decro"></div>
+    <h3 id="feature_title">Features Real Estate</h3>
+    <div id="feature-container">
+        <% var util = new Util($);
+        _.each(items, function(item){ %>
+            <div class="col-sm-4">
+            <div class="feature-wrapper">
+                <div class="feature_photo"><img src="<%= item.photo%>"></div>
+                <table>
+                    <tr>
+                        <td class="column_1"><%=  util.mapping_cn[item.category[0]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[0]['value']%></p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[1]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[1]['value']%></p></td>
+                    </tr>
+
+                    <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[3]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[3]['value']%></p></td>
+                    </tr>
+                    <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[4]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[4]['value']%></p></td>
+                    </tr>
+                    <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[5]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[5]['value']%></p></td>
+                    </tr>
+                     <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[6]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[6]['value']%></p></td>
+                    </tr>
+                     <tr>
+                        <td class="column_1"><%= util.mapping_cn[item.category[7]['name']]%>:</td>
+                        <td class="column_2"><p><%= item.category[7]['value']%></p></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <% }); %>
+        <div class="clearfix"></div>
+    </div>
+</div>
