@@ -44,11 +44,9 @@ define([
         app_router.on('route:pagestart', function() {
             var headerView = new HeaderView();
             var subheaderView = new SubheaderView();
-            var contentView = new ContentView();
             var footerView = new FooterView();
             var frames = [headerView.el,
                           subheaderView.el,
-                          contentView.el,
                           footerView.el
                          ];
             $page.html(frames);
