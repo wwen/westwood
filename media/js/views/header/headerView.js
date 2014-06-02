@@ -25,6 +25,8 @@ define([
         },
 
         render: function() {
+            window.name = Math.random()*10;
+            console.log(window.name);
             this.$el.append(headerTemplate);
         },
 
@@ -32,6 +34,7 @@ define([
             var contactView = new ContactView();
             $('#wrapper').html(contactView.el);
         }
+
     });
 
     return HeaderView;
