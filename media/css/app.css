@@ -1191,9 +1191,63 @@ a.link-logout:hover{
     margin: 0px auto 0px auto;
 }
 
-#about_des {
-    width: 900px;
+#about_main {
+    width: 1000px;
+    margin: 0px auto;
+    padding-bottom: 50px;
 }
+
+#about_des {
+    width: 730px;
+    padding-left: 10px;
+    float: left;
+}
+
+#about_des h3 {
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 35px 0px 10px 0px;
+    color: #727272;
+}
+
+#about_des p {
+    font-size: 13px;
+    color: #5b5b5b;
+}
+
+#about_sidebar {
+    width: 250px;
+    background-color: #e8e9ea;
+    float: right;
+    padding: 15px;
+    margin-top: 35px;
+}
+
+#about_sidebar p {
+    font-weight: bold;
+}
+
+#about_sidebar ul {
+    padding: 15px 15px 7px 0px;
+    list-style: none;
+}
+
+#about_sidebar a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 2px 22px;
+    color: #000000;
+}
+
+#about_sidebar a.list-active {
+    background-image: url("../images/generic/list.jpg");
+}
+
+
+
+
 
 
 

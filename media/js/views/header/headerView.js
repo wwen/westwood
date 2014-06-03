@@ -25,8 +25,6 @@ define([
         },
 
         render: function() {
-            window.name = Math.random()*10;
-            console.log(window.name);
             this.$el.append(headerTemplate);
         },
 

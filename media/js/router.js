@@ -51,10 +51,12 @@ define([
             });
 
             this.on('route:listings', function() {
-                //var headerView = new HeaderView();
+                var headerView = new HeaderView();
                 var contentView = new ContentView();
-                //var footerView = new FooterView();
-                var frames = [contentView.el];
+                var footerView = new FooterView();
+                var frames = [headerView.el, 
+                              contentView.el,
+                              footerView.el];
                 page.html(frames);
                 var listingsView = new ListingsView();
             });
