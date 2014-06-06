@@ -304,6 +304,7 @@ define([
         updateAdmin: function() {
             var al = $("#admin_panel #inventories").position().left + 10;
             $("#admin_panel #pagination_wrap").css({"left": al, "top": ah});
+            console.log($("#admin_panel #pagination_wrap"));
         }
     });
 

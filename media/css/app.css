@@ -1238,11 +1238,16 @@ a.link-logout:hover{
     font-size: 11px;
     background-repeat: no-repeat;
     padding: 0px 0px 2px 22px;
-    color: #000000;
+    color: #;
 }
 
 #about_sidebar a.list-active {
     background-image: url("../images/generic/list.jpg");
+    color: #000000;
+}
+
+#about_sidebar a:hover {
+    cursor: pointer;
 }
 
 
