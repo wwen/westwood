@@ -1100,7 +1100,8 @@ a.link-logout:hover{
 
 #contact_geo_map {
     position: relative;
-    width: auto;
+    width: 620px;
+    height: 300px;
     margin: 15px 0px 0px 11px;
 }
 

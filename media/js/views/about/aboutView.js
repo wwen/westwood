@@ -28,29 +28,6 @@ define([
             _.defer(function() {
                 that.ochange();
             });
-
-            /*var aboutObj = '{"company": {"h3": "WESTWOOD CONSTRUCTION", "context": ["TQ Construction ' +
-                             'is a professional home renovation company with a 30-year tradition of ' +
-                             'excellence in BC’s home improvement, renovation and construction ' +
-                             'industry. TQ stands for Top Quality. We are a complete service ' +
-                             'design/build team that includes engineers, designers, carpenters ' +
-                             'project managers and office staff who strive for exceptional quality ' + 
-                             'in every renovation that we do. That’s why you can confidently trust ' +
-                             'TQ to deliver superior value and results, professional and personal ' +
-                             'service, as well as innovative liveability and sustainability solutions ' + 
-                             'for your home.", "We work with our clients to design, and reinvent by ' +
-                             'adding and reusing materials. We transform vision into reality responsibly, ' +
-                             'and with skill, knowledge, expertise, and reliability. At TQ, we believe ' +
-                             'that a successful renovation isn’t simply about tearing down and starting ' +
-                             'over. It’s about retaining materials and labour which have value and ' +
-                             'history. It’s about taking a home that’s already good and making it even ' + 
-                             'better."]}, ' +
-                             '"vision": {"h3": "vision", "context": ["TQ’s complete design and build 
-                             service transforms ideas into reality with skill, knowledge, expertise and 
-                             reliability. Because we see TQ as a "neighbourhood" within the city we 
-                             serve, we treat our valued customers as neighbours, friends and members 
-                             of our own community.", "", "", "", ""]}' +
-                           '}';*/
         },
 
         ochange: function() {
@@ -84,7 +61,7 @@ define([
                     var active1 = $(".list-active");
                     active1.removeClass("list-active");
                     e.target.setAttribute("class", "list-active");
-                    console.log(e);
+
                     for (var x in aboutObj) {
                         if (x === e.target.innerHTML) {
                             $("h3").html(aboutObj[x].h3);
@@ -100,7 +77,8 @@ define([
                             }    
                         }
                     }
-
+                } else {
+                    e.preventDefault();
                 }
             });
         },

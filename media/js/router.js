@@ -32,7 +32,8 @@ define([
             listings: 'listings',
             admin: 'login',
             contact: 'contact',
-            about: 'about'
+            about: 'about',
+            services: 'services'
         },
 
         initialize: function() {
@@ -95,7 +96,16 @@ define([
                 }).fail(function(response) {
                     var loginView = new LoginView();
                 });
-        });
+            });
+
+            this.on('route:services', function() {
+                var $page = $('#wrapper');
+                var headerView = new HeaderView();
+                //var servicesView = new ServicesView();
+                var footerView = new FooterView();
+                var frames = [headerView.el, servicesView.el, footerView.el];
+                page.html(frames);
+            });
         },
     });
 
