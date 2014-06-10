@@ -18,12 +18,15 @@ define([
     'views/footer/footerView',
     'views/admin/adminView',
     'views/listings/listingsView',
+    'views/portfolio/portfolioView',
     'views/contact/contactView',
     'views/about/aboutView',
-    'views/subheader/subheaderView'
+    'views/subheader/subheaderView',
+    'views/services/servicesView'
 ], function($, _, Backbone, Util,
     LoginView, HeaderView, ContentView, FooterView,
-    AdminView, ListingsView, ContactView, AboutView, SubheaderView) {
+    AdminView, ListingsView, PortfolioView, ContactView,
+    AboutView, SubheaderView, ServicesView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -53,13 +56,14 @@ define([
 
             this.on('route:listings', function() {
                 var headerView = new HeaderView();
-                var contentView = new ContentView();
+                //var contentView = new ContentView();
+                var portfolioView = new PortfolioView();
                 var footerView = new FooterView();
                 var frames = [headerView.el, 
-                              contentView.el,
+                              portfolioView.el,
                               footerView.el];
                 page.html(frames);
-                var listingsView = new ListingsView();
+                //var listingsView = new ListingsView();
             });
 
             this.on('route:contact', function() {
@@ -101,7 +105,7 @@ define([
             this.on('route:services', function() {
                 var $page = $('#wrapper');
                 var headerView = new HeaderView();
-                //var servicesView = new ServicesView();
+                var servicesView = new ServicesView();
                 var footerView = new FooterView();
                 var frames = [headerView.el, servicesView.el, footerView.el];
                 page.html(frames);

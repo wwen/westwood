@@ -56,7 +56,7 @@ define([
                 }
             }
 
-            $("#about_sidebar ul").on("click", "li", aboutObj, function(e) {
+            $("#sidebar ul").on("click", "li", aboutObj, function(e) {
                 if (e.target.localName === "a" && !e.target.className) {
                     var active1 = $(".list-active");
                     active1.removeClass("list-active");

@@ -539,7 +539,7 @@ a.link-logout:hover{
     list-style-type: none;
     height: 40px;
     margin-left: auto;
-    width: 610px;
+    width: 620px;
     margin-right: auto;
 }
 
@@ -1216,7 +1216,46 @@ a.link-logout:hover{
     color: #5b5b5b;
 }
 
-#about_sidebar {
+
+/* ==========================================================================
+   Services styles
+   ========================================================================== */
+
+#service_image {
+    width: 1000px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+#service_main {
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+#service_des {
+    width: 730px;
+    padding-left: 10px;
+    float: left;
+}
+
+#service_des h3 {
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 35px 0px 10px 0px;
+    color: #727272;
+}
+
+#service_des p {
+    font-size: 13px;
+    color: #5b5b5b;
+}
+
+/* ==========================================================================
+   Sidebar styles
+   ========================================================================== */
+
+#sidebar {
     width: 250px;
     background-color: #e8e9ea;
     float: right;
@@ -1224,16 +1263,16 @@ a.link-logout:hover{
     margin-top: 35px;
 }
 
-#about_sidebar p {
+#sidebar p {
     font-weight: bold;
 }
 
-#about_sidebar ul {
+#sidebar ul {
     padding: 15px 15px 7px 0px;
     list-style: none;
 }
 
-#about_sidebar a {
+#sidebar a {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 11px;
@@ -1242,16 +1281,24 @@ a.link-logout:hover{
     color: #;
 }
 
-#about_sidebar a.list-active {
+#sidebar a.list-active {
     background-image: url("../images/generic/list.jpg");
     color: #000000;
 }
 
-#about_sidebar a:hover {
+#sidebar a:hover {
     cursor: pointer;
 }
 
 
+/* ==========================================================================
+   portfolio styles
+   ========================================================================== */
+
+
+/* ==========================================================================
+   portfolio sidebar styles
+   ========================================================================== */
 
 
 
