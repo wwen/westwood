@@ -1295,6 +1295,46 @@ a.link-logout:hover{
    portfolio styles
    ========================================================================== */
 
+#image_gallery {
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: green;
+    
+}
+
+#image_container {
+    width: 3000px;
+    height: 500px;
+    background-color: blue;
+}
+
+#image_container ul {
+    position: relative;
+    list-style-type: none;
+}
+
+#image_container li {
+    position: absolute;
+    display: block;
+    float: left;
+}
+
+#image_container img {
+    width: 750px;
+    height: 500px;
+}
+
+#cover {
+    position: absolute;
+    width: 250px;
+    height: 500px;
+    left: 750px;
+    top: 0px;
+    background: rgba(47,42,38,0.5);
+}
+
 
 /* ==========================================================================
    portfolio sidebar styles
