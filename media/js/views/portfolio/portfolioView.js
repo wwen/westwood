@@ -17,9 +17,7 @@ define(['jquery',
 	   			flag: 1,
 
 	   			events: {
-	   				"click #image_before": "spread",
-	   				"click #play": "play",
-	   				"click #stop": "stop"
+	   				"click #image_before": "spread"
 	   			},
 
 	   			initialize: function() {
@@ -32,7 +30,7 @@ define(['jquery',
 	   				var that = this;
 
 	   				_.defer(function() {
-	   					that.imgLoader();
+	   					that.imgLoader();		
 	   				});
 	   			},
 
@@ -112,16 +110,29 @@ define(['jquery',
 								break;
 							}
 						});
-						
-						// reset all the images position, work for if loading all images 1 time
-						/*if ($("#image_container li").css("left") == "-1500px") {
-							window.setTimeout(function() {
-								list.animate({left: "+=2250px"}, 500, "linear");
-								clearInterval(set);
-								slide();
-							}, 2000);
-						}*/
-					}, 5000);
+					}, 4000);
+					
+					//we can't get and use the value returned by a callback function
+					//so need a nother funtion and pass a function as parameter
+					//the passed function will excute the function that need the to use
+					//the value, that is why we bind play.click event in the parameter function
+					function foo(fn) {
+						$("#stop").click(function(){
+							clearInterval(set); 
+							fn([num, numb, list]);
+						});
+					}
+					
+					var that = this;
+
+					foo(function(newNumber){
+						$("#play").click(newNumber, function() {
+							num = newNumber[0];
+							numb = newNumber[1];
+							list = newNumber[2];
+							that.slide(image, num, list, numb);
+						});
+					});
 	   			},
 
 	   			spread: function() {
