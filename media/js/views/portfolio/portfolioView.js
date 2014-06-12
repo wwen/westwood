@@ -18,8 +18,8 @@ define(['jquery',
 
 	   			events: {
 	   				"click #image_before": "spread",
-	   				"click #play": "play";
-	   				"click #stop": "stop";
+	   				"click #play": "play",
+	   				"click #stop": "stop"
 	   			},
 
 	   			initialize: function() {
