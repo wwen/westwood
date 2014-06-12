@@ -1301,7 +1301,7 @@ a.link-logout:hover{
     height: 500px;
     margin: 0 auto;
     background-color: green;
-    
+    overflow: hidden;
 }
 
 #image_container {
@@ -1374,10 +1374,68 @@ a.link-logout:hover{
 #control_wrapper {
     position: absolute;
     width: 167px;
-    height: 100px;
-    top: 370px;
+    height: 70px;
+    top: 390px;
     left: 41px;
-    background-color: black;
+}
+
+#panel {
+    width: 167px;
+    height: 45px;
+}
+
+#control_wrapper a:hover{
+    cursor: pointer;
+}
+
+#prev {
+    background-image: url("../images/generic/prev.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding-bottom: 27px;
+    padding-left: 19px;
+    margin-left: 22px;
+}
+
+#play {
+    background-image: url("../images/generic/play.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    padding-left: 19px;
+    padding-bottom: 27px;
+    margin-left: 10px;
+}
+
+#stop {
+    background-image: url("../images/generic/stop.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    padding-left: 19px;
+    padding-bottom: 27px;
+    margin-left: 15px;
+}
+
+#next {
+    background-image: url("../images/generic/next.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    padding-left: 19px;
+    padding-bottom: 27px;
+    margin-left: 10px;
+}
+
+#thumbnail {
+    text-decoration: none;
+    color: #ffffff;
+    background-image: url("../images/generic/thumb.png");
+    padding-left: 37px;
+    display: inline-block;
+    line-height: 19px;
+    background-repeat: no-repeat;
+    font-size: 12px;
+    margin-left: 18px;
 }
 /* ==========================================================================
    portfolio sidebar styles

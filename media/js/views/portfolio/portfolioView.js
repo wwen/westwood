@@ -14,10 +14,12 @@ define(['jquery',
 	   		var PortfolioView = Backbone.View.extend({
 	   			tagName: 'div',
 	   			id: 'service_content',
-	   			offset: 1,
+	   			flag: 1,
 
 	   			events: {
-	   				"click #image_before": "spread"
+	   				"click #image_before": "spread",
+	   				"click #play": "play";
+	   				"click #stop": "stop";
 	   			},
 
 	   			initialize: function() {
@@ -127,12 +129,12 @@ define(['jquery',
 	   							 "../westwood/media/images/generic/arrow_up.jpg"
 	   							];
 
-	   				if(this.offset == 1){
+	   				if(this.flag == 1){
 	   					$("#image_before .arrow").attr("src", arrow[1]);
-	   					this.offset--;
+	   					this.flag--;
 	   				} else {
 	   					$("#image_before .arrow").attr("src", arrow[0]);
-	   					this.offset++;
+	   					this.flag++;
 	   				}
 	   				
 	   				$("#image_before .showcase").toggle("fast");;
