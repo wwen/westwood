@@ -14,6 +14,11 @@ define(['jquery',
 	   		var PortfolioView = Backbone.View.extend({
 	   			tagName: 'div',
 	   			id: 'service_content',
+	   			offset: 1,
+
+	   			events: {
+	   				"click #image_before": "spread"
+	   			},
 
 	   			initialize: function() {
 	   				this.render();
@@ -35,6 +40,7 @@ define(['jquery',
 	   				var imageObj = {};
 	   				var list = $("#image_container li");
 	   				var num = 4;
+	   				var numb = 1;
 	   				//console.log(list.eq(1));
 
 	   				oRequest.open("get", "./media/js/views/portfolio/image.json", false);
@@ -53,16 +59,18 @@ define(['jquery',
 	   					var imgtmpl = '<img src="' + imageObj[i].after + '" alt="westwood" />';
 	   					list.eq(i).append(imgtmpl);
 	   					list.eq(i).css({left: i*750+"px"});
-	   					if(list.eq(i).css("left") == "0px") {
-	   						list.eq(i).addClass("image_active");
+
+	   					//load the first un-constructed image
+	   					if(i == 0) {
+	   						$("#image_before .showcase").attr("src", imageObj[i].before);
 	   					}
 	   				}
 	   				
-	   				this.slide(imageObj, num, list);
+	   				this.slide(imageObj, num, list, numb);
 	   			},
 
 	   			//automatic slide
-	   			slide: function(image, num, list) {
+	   			slide: function(image, num, list, numb) {
 	   				var imgNum = image.length;
 
 					var set = window.setInterval(function() {
@@ -75,16 +83,28 @@ define(['jquery',
 							count++;
 							while(count == 1){
 								if(list.eq(0).css("left") == "-750px") {
+									
 									//remove the first image
 									list.eq(0).addClass("remove");
 									$(".remove").remove();
+									
 									//add new image to the lists, 1 image per time
 									list.last().after('<li style="left: 2250px;"><img src="' + image[num].after + '" alt="westwood" /></li>');
 									num++;
+									
+									//add new un-constructed image, 1 image per time
+									$("#image_before .showcase").attr("src", image[numb].before);
+									numb++;
+									
 									//re-get list array
 									list = $("#image_container li");
+
+									//reset num and numb when achive the last image
 									if (num == imgNum) {
 										num = 0;
+									}
+									if (numb == imgNum) {
+										numb = 0;
 									}
 								}
 								break;
@@ -100,9 +120,24 @@ define(['jquery',
 							}, 2000);
 						}*/
 					}, 5000);
+	   			},
+
+	   			spread: function() {
+	   				var arrow = ["../westwood/media/images/generic/arrow_down.jpg",
+	   							 "../westwood/media/images/generic/arrow_up.jpg"
+	   							];
+
+	   				if(this.offset == 1){
+	   					$("#image_before .arrow").attr("src", arrow[1]);
+	   					this.offset--;
+	   				} else {
+	   					$("#image_before .arrow").attr("src", arrow[0]);
+	   					this.offset++;
+	   				}
+	   				
+	   				$("#image_before .showcase").toggle("fast");;
 	   			}
 
-	   			
 	   		});	
 
 	   		return PortfolioView;
