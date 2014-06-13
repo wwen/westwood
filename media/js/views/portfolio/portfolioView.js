@@ -69,12 +69,13 @@ define(['jquery',
 	   				this.slide(imageObj, num, list, numb);
 	   			},
 
-	   			//automatic slide
+	   			//slide
 	   			slide: function(image, num, list, numb) {
 	   				var imgNum = image.length;
+	   				var that = this;
 
-					var set = window.setInterval(function() {
-						var count = 0;
+	   				var autoMoveleft = function() {
+	   					var count = 0;
 
 						list.animate({left: "-=750px"}, 500, "linear", function() {
 							//Because ist has 4 elements, the callback function of animate 
@@ -98,7 +99,7 @@ define(['jquery',
 									
 									//re-get list array
 									list = $("#image_container li");
-
+									
 									//reset num and numb when achive the last image
 									if (num == imgNum) {
 										num = 0;
@@ -107,31 +108,25 @@ define(['jquery',
 										numb = 0;
 									}
 								}
+								console.log([num,numb,list]);
 								break;
 							}
 						});
-					}, 4000);
+	   				};
+
+					var set = window.setInterval(autoMoveleft, 4000);
 					
 					//we can't get and use the value returned by a callback function
 					//so need a nother funtion and pass a function as parameter
 					//the passed function will excute the function that need the to use
 					//the value, that is why we bind play.click event in the parameter function
-					function foo(fn) {
-						$("#stop").click(function(){
-							clearInterval(set); 
-							fn([num, numb, list]);
-						});
-					}
+					$("#stop").click(function(){
+						clearInterval(set);
+					});
 					
-					var that = this;
-
-					foo(function(newNumber){
-						$("#play").click(newNumber, function() {
-							num = newNumber[0];
-							numb = newNumber[1];
-							list = newNumber[2];
-							that.slide(image, num, list, numb);
-						});
+					$("#play").click(function() {
+						console.log([num,numb,list]);
+						set = window.setInterval(autoMoveleft, 4000);
 					});
 	   			},
 
@@ -150,7 +145,6 @@ define(['jquery',
 	   				
 	   				$("#image_before .showcase").toggle("fast");;
 	   			}
-
 	   		});	
 
 	   		return PortfolioView;
