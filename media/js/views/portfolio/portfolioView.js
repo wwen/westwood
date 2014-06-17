@@ -13,11 +13,13 @@ define(['jquery',
 
 	   		var PortfolioView = Backbone.View.extend({
 	   			tagName: 'div',
-	   			id: 'service_content',
+	   			id: 'portfolio_content',
 	   			flag: 1,
 
 	   			events: {
-	   				"click #image_before": "spread"
+	   				"click #image_before": "spread",
+	   				"click #thumbnail": "showAll",
+	   				"click #close_showall": "showGallery"
 	   			},
 
 	   			initialize: function() {
@@ -41,6 +43,7 @@ define(['jquery',
 	   				var list = $("#image_container li");
 	   				var num = 4;
 	   				var numb = 1;
+	   				var imgNum = 0;
 	   				//console.log(list.eq(1));
 
 	   				oRequest.open("get", "./media/js/views/portfolio/image.json", false);
@@ -49,31 +52,35 @@ define(['jquery',
 	   				oRequest.onreadystatechange = function() {
 	   					if(oRequest.readyState == 4 && oRequest.status == 200) {
 	   						imageObj = JSON.parse(oRequest.responseText);
+	   						imgNum = imageObj.length;
 	   					}
 	   				}
 	   				
 	   				oRequest.send(null);
 
+	   				var portfolioActive = $(".folio-list-active");
+ 
+	   				$("#portfolio_content #sidebar ul").on("click", "li", imageObj, function() {
+	   					for (var y=0, y<imageObj, y++) {}
+	   				});
+
 	   				//initialize image, loading 4 images at first time
    					for (var i=0; i<4; i++) {
-	   					var imgtmpl = '<img src="' + imageObj[i].after + '" alt="westwood" />';
+	   					var imgtmpl = '<img src="' + imageObj["window + deck"][i].after + '" alt="westwood" />';
 	   					list.eq(i).append(imgtmpl);
 	   					list.eq(i).css({left: i*750+"px"});
 
 	   					//load the first un-constructed image
 	   					if(i == 0) {
-	   						$("#image_before .showcase").attr("src", imageObj[i].before);
+	   						$("#image_before .showcase").attr("src", imageObj["window + deck"][i].before);
 	   					}
 	   				}
 	   				
-	   				this.slide(imageObj, num, list, numb);
+	   				this.slide(imageObj, num, list, numb, imgNum);
 	   			},
 
 	   			//slide
-	   			slide: function(image, num, list, numb) {
-	   				var imgNum = image.length;
-	   				var that = this;
-
+	   			slide: function(image, num, list, numb, imgNum) {
 	   				var autoMoveleft = function() {
 	   					var count = 0;
 
@@ -108,7 +115,7 @@ define(['jquery',
 										numb = 0;
 									}
 								}
-								console.log([num,numb,list]);
+
 								break;
 							}
 						});
@@ -122,11 +129,103 @@ define(['jquery',
 					//the value, that is why we bind play.click event in the parameter function
 					$("#stop").click(function(){
 						clearInterval(set);
+						set = null;
 					});
 					
 					$("#play").click(function() {
-						console.log([num,numb,list]);
+						if(!set) {
+							set = window.setInterval(autoMoveleft, 4000);
+						}
+					});
+
+					//manually move image to left
+					$("#prev").click(function() {
+						clearInterval(set);
+
+						var count = 0;
+
+						list.animate({left: "-=750px"}, 500, "linear", function() {
+							//Because ist has 4 elements, the callback function of animate 
+							//will execute 4 times. So set a count to let callback function 
+							//just execute 1 time.
+							count++;
+							
+							while(count == 1){
+								if(list.eq(0).css("left") == "-750px") {
+									
+									//remove the first image
+									list.eq(0).addClass("remove");
+									$(".remove").remove();
+									
+									//add new image to the lists, 1 image per time
+									list.last().after('<li style="left: 2250px;"><img src="' + image[num].after + '" alt="westwood" /></li>');
+									num++;
+									
+									//add new un-constructed image, 1 image per time
+									$("#image_before .showcase").attr("src", image[numb].before);
+									numb++;
+									
+									//re-get list array
+									list = $("#image_container li");
+									
+									//reset num and numb when achive the last image
+									if (num == imgNum) {
+										num = 0;
+									}
+									if (numb == imgNum) {
+										numb = 0;
+									}
+								}
+
+								break;
+							}
+						});
+						
 						set = window.setInterval(autoMoveleft, 4000);
+					});
+					
+					//manually move image to right
+					$("#next").click(function() {
+						clearInterval(set);
+
+						var count = 0;
+
+						list.last().remove();
+
+						if (num + imgNum -5 == imgNum) {
+							list.first().before('<li style="left: -750px;"><img src="' + image[0].after + '" alt="westwood" /></li>');
+							num--;
+						} else {
+							list.first().before('<li style="left: -750px;"><img src="' + image[num+imgNum-5].after + '" alt="westwood" /></li>');		
+							num--;
+						}
+						
+						if (num == -1) {
+							num = imgNum-1;
+						};
+
+						list = $("#image_container li");
+
+						list.animate({left: "+=750px"}, 500, "linear", function() {
+							count++;
+							while (count == 1) {
+								if (numb == 1) {
+									$("#image_before .showcase").attr("src", image[imgNum-1].before);
+									numb--;
+								} else if (numb == 0) {
+									numb = imgNum;
+									$("#image_before .showcase").attr("src", image[numb-2].before);
+									numb--;
+								} else {
+									$("#image_before .showcase").attr("src", image[numb-2].before);
+									numb--;
+								}
+								
+								break;
+							}
+						});
+
+						set =window.setInterval(autoMoveleft, 4000);
 					});
 	   			},
 
@@ -144,7 +243,17 @@ define(['jquery',
 	   				}
 	   				
 	   				$("#image_before .showcase").toggle("fast");;
+	   			},
+
+	   			showAll: function() {
+	   				$("#image_gallery #showall").css({"z-index": "0"});
+	   			},
+
+	   			showGallery: function() {
+	   				$("#image_gallery #showall").css({"z-index": "-1"});
 	   			}
+
+
 	   		});	
 
 	   		return PortfolioView;

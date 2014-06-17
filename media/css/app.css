@@ -1282,7 +1282,7 @@ a.link-logout:hover{
 }
 
 #sidebar a.list-active {
-    background-image: url("../images/generic/list.jpg");
+    background-image: url("../images/generic/list2.png");
     color: #000000;
 }
 
@@ -1294,6 +1294,9 @@ a.link-logout:hover{
 /* ==========================================================================
    portfolio styles
    ========================================================================== */
+
+#portfolio_content {
+}
 
 #image_gallery {
     position: relative;
@@ -1438,15 +1441,129 @@ a.link-logout:hover{
     margin-left: 18px;
 }
 
+#showall {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 1000px;
+    height: 500px;
+    background-color: #c9c9ca;
+    z-index: -1;
+}
+
+#showall #close_showall {
+    background-image: url("../images/generic/close.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer; 
+    float: right;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-right: 20px; 
+}
+
+#showall .thumbnail {
+    width: 1000px;
+    height: auto;
+}
+
 
 /* ==========================================================================
    portfolio sidebar styles
    ========================================================================== */
 
+#portfolio_content #sidebar {
+    width: 1000px;
+    height: 50px;
+    margin: 17px auto 0 auto;
+    float: none;
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+#portfolio_content #sidebar span {
+    text-transform: uppercase;
+    font-weight: bold;
+    float: left;
+}
+
+#portfolio_content #sidebar ul {
+    float: left;
+    padding: 0px 20px 0px 30px;
+    list-style: none;
+}
+
+#portfolio_content #sidebar li {
+    display: inline-block;
+}
+
+#portfolio_content #sidebar ul a {
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding: 20px 17px 0px 17px;
+    color: #;
+}
+
+#portfolio_content #sidebar a.list-active {
+    background-image: url("../images/generic/list1.png");
+    font-weight: bold;
+    color: #000000;
+}
+
+#portfolio_content #sidebar a:hover {
+    cursor: pointer;
+}
 
 
+/* ==========================================================================
+   portfolio showall sidebar styles
+   ========================================================================== */
 
+#showall #sidebar {
+    width: auto;
+    background-color: #c9c9ca;
+    padding: 15px;
+    float: none;
+    margin-top: 0px;
+    margin-left: 10px;
+}
 
+#showall #sidebar span {
+    font-weight: bold;
+    float: left;
+}
+
+#showall #sidebar ul {
+    float: left;
+    padding: 0px 20px 0px 15px;
+    list-style: none;
+}
+
+#showall #sidebar li {
+    display: inline-block;
+}
+
+#showall #sidebar ul > a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 11px;
+    background-repeat: no-repeat;
+    padding: 0px 0px 2px 37px;
+    color: #;
+}
+
+#showall #sidebar > a.list-active {
+    font-weight: bold;
+    color: #000000;
+}
+
+#showall #sidebar > a:hover {
+    cursor: pointer;
+}
 
 
 
