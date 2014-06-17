@@ -44,6 +44,8 @@ define(['jquery',
                     var num = 4;
                     var numb = 1;
                     var imgNum = 0;
+                    var that = this;
+                    var counted = false;
 
                     oRequest.open("get", "./media/js/views/portfolio/image.json", false);
                     oRequest.setRequestHeader("Content-type", "application/json");
@@ -51,7 +53,6 @@ define(['jquery',
                     oRequest.onreadystatechange = function() {
                         if(oRequest.readyState == 4 && oRequest.status == 200) {
                             imageObj = JSON.parse(oRequest.responseText);
-                            imgNum = imageObj["kitchen"].length;
                         }
                     }
                     
@@ -61,6 +62,7 @@ define(['jquery',
 
                     for (var y in imageObj) {
                         if (y === portfolioActive.html()) {
+
                             //initialize image, loading 4 images at first time
                             for (var i=0; i<4; i++) {
                                 var imgtmpl = '<img src="' + imageObj[y][i].after + '" alt="westwood" />';
@@ -72,13 +74,46 @@ define(['jquery',
                                     $("#image_before .showcase").attr("src", imageObj[y][i].before);
                                 }
                             }
+
+                            imgNum = imageObj[y].length;
+                            this.slide(imageObj[y], num, list, numb, imgNum);
                         }
                     }
 
                     //changing the catagary
-                    $("")
-                    
-                    this.slide(imageObj[y], num, list, numb, imgNum);
+                    $("#portfolio_content > #sidebar").on("click", "li", imageObj, function(e) {
+                        if (counted == false) {
+                            counted = true;
+                        } else {
+                            counted = false
+                        }
+
+                        if (!e.target.className) {
+                            portfolioActive = $(".folio-list-active");
+                            portfolioActive.removeClass("folio-list-active");
+                            e.target.setAttribute("class", "folio-list-active");
+                            console.log(e);
+
+                            for (y in imageObj) {
+                                if (y === e.target.innerHTML) {
+                                    console.log(y);
+                                    for (var i=0; i<4; i++) {
+                                        var imgtmpl = '<img src="' + imageObj[y][i].after + '" alt="westwood" />';
+                                        list.eq(i).append(imgtmpl);
+                                        list.eq(i).css({left: i*750+"px"});
+
+                                        //load the first un-constructed image
+                                        if(i == 0) {
+                                            $("#image_before .showcase").attr("src", imageObj[y][i].before);
+                                        }
+                                    }
+                                }
+                            }
+
+                            imgNum = imageObj[y].length;
+                            that.slide(imageObj[y], num, list, numb, imgNum);
+                        }
+                    });
                 },
 
                 //slide

@@ -12,7 +12,7 @@
  		      {"before": "../westwood/media/images/test/image9.jpg", "after": "../westwood/media/images/test/image10.jpg"},
  		      {"before": "../westwood/media/images/test/image11.jpg", "after": "../westwood/media/images/test/image12.jpg"}
  		     ],
- "other room": [{"before": "../westwood/media/images/test/image1.jpg", "after": "../westwood/media/images/test/image2.jpg"}, 
+ "other rooms": [{"before": "../westwood/media/images/test/image1.jpg", "after": "../westwood/media/images/test/image2.jpg"}, 
  		   	    {"before": "../westwood/media/images/test/image3.jpg", "after": "../westwood/media/images/test/image4.jpg"}, 
  		        {"before": "../westwood/media/images/test/image5.jpg", "after": "../westwood/media/images/test/image6.jpg"},
  		        {"before": "../westwood/media/images/test/image7.jpg", "after": "../westwood/media/images/test/image8.jpg"},
@@ -26,7 +26,7 @@
  		      	   {"before": "../westwood/media/images/test/image9.jpg", "after": "../westwood/media/images/test/image10.jpg"},
  		      	   {"before": "../westwood/media/images/test/image11.jpg", "after": "../westwood/media/images/test/image12.jpg"}
                   ],
- "home addistions": [{"before": "../westwood/media/images/test/image1.jpg", "after": "../westwood/media/images/test/image2.jpg"}, 
+ "home additions": [{"before": "../westwood/media/images/test/image1.jpg", "after": "../westwood/media/images/test/image2.jpg"}, 
  		   	  		 {"before": "../westwood/media/images/test/image3.jpg", "after": "../westwood/media/images/test/image4.jpg"}, 
 		 		     {"before": "../westwood/media/images/test/image5.jpg", "after": "../westwood/media/images/test/image6.jpg"},
 		 		     {"before": "../westwood/media/images/test/image7.jpg", "after": "../westwood/media/images/test/image8.jpg"},
