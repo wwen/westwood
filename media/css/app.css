@@ -1508,7 +1508,7 @@ a.link-logout:hover{
     color: #;
 }
 
-#portfolio_content #sidebar a.list-active {
+#portfolio_content #sidebar a.folio-list-active {
     background-image: url("../images/generic/list1.png");
     font-weight: bold;
     color: #000000;
