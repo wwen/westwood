@@ -16,6 +16,7 @@ define(['jquery',
                 id: 'portfolio_content',
                 flag: 1,
 
+
                 events: {
                     "click #image_before": "spread",
                     "click #thumbnail": "showAll",
@@ -45,7 +46,6 @@ define(['jquery',
                     var numb = 1;
                     var imgNum = 0;
                     var that = this;
-                    var counted = false;
 
                     oRequest.open("get", "./media/js/views/portfolio/image.json", false);
                     oRequest.setRequestHeader("Content-type", "application/json");
@@ -77,50 +77,59 @@ define(['jquery',
 
                             imgNum = imageObj[y].length;
                             this.slide(imageObj[y], num, list, numb, imgNum);
+
+                            for (var a=0; a<imgNum; a++) {
+                                $("#showall .thumbnail").append('<img class="showall_image" src="' + imageObj[y][a].after + '" alt="westwood" />');
+                            }
+                            $("#showall .thumbnail").append('<div class="clearfix"></div>');
                         }
                     }
 
                     //changing the catagary
                     $("#portfolio_content > #sidebar").on("click", "li", imageObj, function(e) {
-                        if (counted == false) {
-                            counted = true;
-                        } else {
-                            counted = false
-                        }
+                        list.trigger('stopslide');
+                        console.log(list);
+                        list = $("#image_container li");
+
+                        list.off('stopslide');
+                        $("#prev").off("click");
+                        $("#next").off("click");
+                        $("#stop").off("click");
+                        $("#play").off("click");
 
                         if (!e.target.className) {
                             portfolioActive = $(".folio-list-active");
                             portfolioActive.removeClass("folio-list-active");
                             e.target.setAttribute("class", "folio-list-active");
-                            console.log(e);
 
-                            for (y in imageObj) {
-                                if (y === e.target.innerHTML) {
-                                    console.log(y);
-                                    for (var i=0; i<4; i++) {
-                                        var imgtmpl = '<img src="' + imageObj[y][i].after + '" alt="westwood" />';
-                                        list.eq(i).append(imgtmpl);
-                                        list.eq(i).css({left: i*750+"px"});
+                            for (var z in imageObj) {
+                                if (z === e.target.innerHTML) {
+                                    for (var j=0; j<4; j++) {
+                                        var imgtmpl = '<img src="' + imageObj[z][j].after + '" alt="westwood" />';
+                                        list.eq(j).html(imgtmpl);
+                                        list.eq(j).css({left: j*750+"px"});
 
                                         //load the first un-constructed image
-                                        if(i == 0) {
-                                            $("#image_before .showcase").attr("src", imageObj[y][i].before);
+                                        if(j == 0) {
+                                            $("#image_before .showcase").attr("src", imageObj[z][j].before);
                                         }
                                     }
                                 }
                             }
 
-                            imgNum = imageObj[y].length;
-                            that.slide(imageObj[y], num, list, numb, imgNum);
+                            imgNum = imageObj[z].length;
+                            that.slide(imageObj[z], num, list, numb, imgNum);
                         }
                     });
+
+                    //initialize the showall image
                 },
 
                 //slide
                 slide: function(image, num, list, numb, imgNum) {
                     var autoMoveleft = function() {
                         var count = 0;
-
+                        
                         list.animate({left: "-=750px"}, 500, "linear", function() {
                             //Because ist has 4 elements, the callback function of animate 
                             //will execute 4 times. So set a count to let callback function 
@@ -132,6 +141,7 @@ define(['jquery',
                                     //remove the first image
                                     list.eq(0).addClass("remove");
                                     $(".remove").remove();
+                                    list.eq(0).removeClass("remove");
                                     
                                     //add new image to the lists, 1 image per time
                                     list.last().after('<li style="left: 2250px;"><img src="' + image[num].after + '" alt="westwood" /></li>');
@@ -151,22 +161,27 @@ define(['jquery',
                                     if (numb == imgNum) {
                                         numb = 0;
                                     }
-                                }
-
+                                }                           
                                 break;
                             }
                         });
                     };
 
                     var set = window.setInterval(autoMoveleft, 4000);
+
+
+                    _.extend(list, Backbone.Events);                    
+                    list.on('stopslide', function() {
+                        window.clearInterval(set);
+                    });
                     
                     //we can't get and use the value returned by a callback function
                     //so need a nother funtion and pass a function as parameter
                     //the passed function will excute the function that need the to use
                     //the value, that is why we bind play.click event in the parameter function
-                    $("#stop").click(function(){
-                        clearInterval(set);
-                        set = null;
+                    $("#stop").on('click', function(){
+                       window.clearInterval(set);
+                       set = null;
                     });
                     
                     $("#play").click(function() {
@@ -229,17 +244,17 @@ define(['jquery',
 
                         list.last().remove();
 
-                        if (num + imgNum -5 == imgNum) {
+                        if (num + 1 == imgNum) {
                             list.first().before('<li style="left: -750px;"><img src="' + image[0].after + '" alt="westwood" /></li>');
                             num--;
                         } else {
                             list.first().before('<li style="left: -750px;"><img src="' + image[num+imgNum-5].after + '" alt="westwood" /></li>');       
                             num--;
                         }
-                        
+
                         if (num == -1) {
-                            num = imgNum-1;
-                        };
+                            num = imgNum - 1;
+                        }
 
                         list = $("#image_container li");
 
@@ -288,6 +303,10 @@ define(['jquery',
 
                 showGallery: function() {
                     $("#image_gallery #showall").css({"z-index": "-1"});
+                },
+
+                clearSet: function() {
+                    window.clearInterval(set);
                 }
             }); 
 
