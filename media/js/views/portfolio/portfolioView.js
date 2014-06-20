@@ -137,7 +137,25 @@ define(['jquery',
                     });
 
                     //changing the showall catagary
-                    
+                    $("#showall #sidebar ul").on("click", "li", imageObj, function(e) {
+                        if (!e.target.className) {
+                            showallActive = $(".list-active");
+                            showallActive.removeClass("list-active");
+                            e.target.setAttribute("class", "list-active");
+
+                            for (var d in imageObj) {
+                                if (d === e.target.innerHTML) {
+                                    imgNum = imageObj[d].length;
+                                    $("#showall .thumbnail").html("");
+                                    for (var f=0; f<imgNum; f++) {
+                                        $("#showall .thumbnail").append('<img class="showall_image" src="' + imageObj[d][f].after + '" alt="westwood" />');
+                                    }
+                                    $("#showall .thumbnail").append('<div class="clearfix"></div>');
+                                }
+                            }
+                        }
+                        
+                    });
                 },
 
                 //slide
