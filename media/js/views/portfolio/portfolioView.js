@@ -59,6 +59,7 @@ define(['jquery',
                     oRequest.send(null);
 
                     var portfolioActive = $(".folio-list-active");
+                    var showallActive = $(".list-active");
 
                     for (var y in imageObj) {
                         if (y === portfolioActive.html()) {
@@ -66,7 +67,7 @@ define(['jquery',
                             //initialize image, loading 4 images at first time
                             for (var i=0; i<4; i++) {
                                 var imgtmpl = '<img src="' + imageObj[y][i].after + '" alt="westwood" />';
-                                list.eq(i).append(imgtmpl);
+                                list.eq(i).html(imgtmpl);
                                 list.eq(i).css({left: i*750+"px"});
 
                                 //load the first un-constructed image
@@ -87,20 +88,27 @@ define(['jquery',
 
                     //changing the catagary
                     $("#portfolio_content > #sidebar").on("click", "li", imageObj, function(e) {
-                        list.trigger('stopslide');
-                        console.log(list);
-                        list = $("#image_container li");
-
-                        list.off('stopslide');
-                        $("#prev").off("click");
-                        $("#next").off("click");
-                        $("#stop").off("click");
-                        $("#play").off("click");
-
                         if (!e.target.className) {
+                            list.trigger('stopslide');
+                            list = $("#image_container li");
+
+                            list.off('stopslide');
+                            $("#prev").off("click");
+                            $("#next").off("click");
+                            $("#stop").off("click");
+                            $("#play").off("click");
+
                             portfolioActive = $(".folio-list-active");
                             portfolioActive.removeClass("folio-list-active");
                             e.target.setAttribute("class", "folio-list-active");
+
+                            showallActive = $(".list-active");
+                            showallActive.removeClass("list-active");
+                            for (var c=0; c < $("#showall #sidebar li a").length; c++) {
+                                if ($("#showall #sidebar li a").eq(c).html() === e.target.innerHTML) {
+                                    $("#showall #sidebar li a").eq(c).addClass("list-active");
+                                }
+                            }
 
                             for (var z in imageObj) {
                                 if (z === e.target.innerHTML) {
@@ -114,15 +122,22 @@ define(['jquery',
                                             $("#image_before .showcase").attr("src", imageObj[z][j].before);
                                         }
                                     }
+                                    
+                                    imgNum = imageObj[z].length;
+                                    that.slide(imageObj[z], num, list, numb, imgNum);
+
+                                    $("#showall .thumbnail").html("");
+                                    for (var b=0; b<imgNum; b++) {
+                                        $("#showall .thumbnail").append('<img class="showall_image" src="' + imageObj[z][b].after + '" alt="westwood" />');
+                                    }
+                                    $("#showall .thumbnail").append('<div class="clearfix"></div>');
                                 }
                             }
-
-                            imgNum = imageObj[z].length;
-                            that.slide(imageObj[z], num, list, numb, imgNum);
                         }
                     });
 
-                    //initialize the showall image
+                    //changing the showall catagary
+                    
                 },
 
                 //slide
@@ -248,7 +263,7 @@ define(['jquery',
                             list.first().before('<li style="left: -750px;"><img src="' + image[num+imgNum-5].after + '" alt="westwood" /></li>');
                             num--;
                         } else {
-                            list.first().before('<li style="left: -750px;"><img src="' + image[nums-5].after + '" alt="westwood" /></li>');       
+                            list.first().before('<li style="left: -750px;"><img src="' + image[num-5].after + '" alt="westwood" /></li>');       
                             num--;
                         }
 
