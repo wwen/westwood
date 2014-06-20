@@ -244,11 +244,11 @@ define(['jquery',
 
                         list.last().remove();
 
-                        if (num + 1 == imgNum) {
-                            list.first().before('<li style="left: -750px;"><img src="' + image[0].after + '" alt="westwood" /></li>');
+                        if (num >= 0 && num<=4) {
+                            list.first().before('<li style="left: -750px;"><img src="' + image[num+imgNum-5].after + '" alt="westwood" /></li>');
                             num--;
                         } else {
-                            list.first().before('<li style="left: -750px;"><img src="' + image[num+imgNum-5].after + '" alt="westwood" /></li>');       
+                            list.first().before('<li style="left: -750px;"><img src="' + image[nums-5].after + '" alt="westwood" /></li>');       
                             num--;
                         }
 
