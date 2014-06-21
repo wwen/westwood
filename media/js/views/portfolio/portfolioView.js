@@ -48,6 +48,7 @@ define(['jquery',
                     var numb = 1;
                     var imgNum = 0;
                     var that = this;
+                    var screenWidth = null;
 
                     oRequest.open("get", "./media/js/views/portfolio/image.json", false);
                     oRequest.setRequestHeader("Content-type", "application/json");
@@ -157,11 +158,13 @@ define(['jquery',
                             }
                         }
                     });
-
+                    
+                    screenWidth = $("#portfolio_content").outerWidth();
+                    
                     $("#showall .thumbnail").on("click", "img", function(e) {
                         that.$el.append(pagecoverTemplate);
+                        $("#pagecover").css({'width': screenWidth+'px'});
                         $("#pagecover").append(imgpopupTemplate);
-                        
                         
 
                         $("#popup").append('<img src="..' + e.currentTarget.src.slice(16) +'" alt="westernwood">');
@@ -171,6 +174,7 @@ define(['jquery',
                             $("#pagecover").remove();
                         }); 
                     });
+                    console.log($("#showall .thumbnail img"));
                 },
 
                 //slide
