@@ -8,8 +8,10 @@
 define(['jquery',
         'underscore',
         'backbone',
-        'text!templates/portfolio/portfolioTmpl.html'
-       ], function($, _, Backbone, portfolioTemplate) {
+        'text!templates/portfolio/portfolioTmpl.html',
+        'text!templates/portfolio/imgpopupTmpl.html',
+        'text!templates/portfolio/pagecoverTmpl.html'
+       ], function($, _, Backbone, portfolioTemplate, imgpopupTemplate, pagecoverTemplate) {
 
             var PortfolioView = Backbone.View.extend({
                 tagName: 'div',
@@ -154,7 +156,20 @@ define(['jquery',
                                 }
                             }
                         }
+                    });
+
+                    $("#showall .thumbnail").on("click", "img", function(e) {
+                        that.$el.append(pagecoverTemplate);
+                        $("#pagecover").append(imgpopupTemplate);
                         
+                        
+
+                        $("#popup").append('<img src="..' + e.currentTarget.src.slice(16) +'" alt="westernwood">');
+                       
+                        $("#close_popup").click(function() {
+                            $("#popup").remove();
+                            $("#pagecover").remove();
+                        }); 
                     });
                 },
 

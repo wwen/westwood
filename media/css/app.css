@@ -539,7 +539,7 @@ a.link-logout:hover{
     list-style-type: none;
     height: 40px;
     margin-left: auto;
-    width: 620px;
+    width: 460px;
     margin-right: auto;
 }
 
@@ -1303,14 +1303,12 @@ a.link-logout:hover{
     width: 1000px;
     height: 500px;
     margin: 0 auto;
-    background-color: green;
     overflow: hidden;
 }
 
 #image_container {
     width: 3000px;
     height: 500px;
-    background-color: blue;
 }
 
 #image_container ul {
@@ -1498,6 +1496,15 @@ a.link-logout:hover{
     margin: 5px;
 }
 
+#pagecover {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 2000px;
+    height: 1110px;
+}
+
 /* ==========================================================================
    portfolio sidebar styles
    ========================================================================== */
@@ -1515,6 +1522,7 @@ a.link-logout:hover{
     text-transform: uppercase;
     font-weight: bold;
     float: left;
+    font-size: 14px;
 }
 
 #portfolio_content #sidebar ul {
@@ -1531,7 +1539,7 @@ a.link-logout:hover{
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 11px;
+    font-size: 14px;
     background-repeat: no-repeat;
     background-position: center top;
     padding: 20px 17px 0px 17px;
@@ -1564,10 +1572,10 @@ a.link-logout:hover{
 }
 
 #showall #sidebar span {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     float: left;
-    padding-top: 4px;
+    padding-top: 3px;
     padding-left: 27px;
 }
 
@@ -1584,7 +1592,7 @@ a.link-logout:hover{
 #showall #sidebar ul a {
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 12px;
     background-repeat: no-repeat;
     padding: 0px 0px 2px 37px;
 }
@@ -1599,8 +1607,35 @@ a.link-logout:hover{
     cursor: pointer;
 }
 
+#popup {
+    width: 600px;
+    height: 450px;
+    position: absolute;
+    left: 200px;
+    top: 37px;
+    background-color: red;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px 3px rgb(112, 112, 112);
+    z-index: 9999;
+}
 
+#popup #close_popup {
+    padding-left: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    background-image: url("../images/generic/close_button1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 589px;
+    top: -10px;
+}
 
+#popup img {
+    width: 600px;
+    height: 450px;
+    border-radius: 10px;
+}
 
 
 
