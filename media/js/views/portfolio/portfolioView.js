@@ -334,8 +334,8 @@ define(['jquery',
                 },
 
                 spread: function() {
-                    var arrow = ["../westwood/media/images/generic/arrow_down.jpg",
-                                 "../westwood/media/images/generic/arrow_up.jpg"
+                    var arrow = ["../media/images/generic/arrow_down.jpg",
+                                 "../media/images/generic/arrow_up.jpg"
                                 ];
 
                     if(this.flag == 1){

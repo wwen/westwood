@@ -1100,7 +1100,7 @@ a.link-logout:hover{
 
 #contact_geo_map {
     position: relative;
-    width: 620px;
+    width: 97%;
     height: 300px;
     margin: 15px 0px 0px 11px;
 }
@@ -1446,6 +1446,7 @@ a.link-logout:hover{
     width: 1000px;
     height: 500px;
     background-color: #c9c9ca;
+    z-index: -1;
 }
 
 #showall #close_showall {
@@ -1631,7 +1632,3 @@ a.link-logout:hover{
     height: 450px;
     border-radius: 10px;
 }
-
-
-
-
