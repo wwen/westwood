@@ -35,7 +35,7 @@ define(['jquery',
                     var that = this;
 
                     _.defer(function() {
-                        that.imgLoader();       
+                        that.imgLoader();
                     });
                 },
 
@@ -174,7 +174,6 @@ define(['jquery',
                             $("#pagecover").remove();
                         }); 
                     });
-                    console.log($("#showall .thumbnail img"));
                 },
 
                 //slide
