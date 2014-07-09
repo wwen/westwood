@@ -165,9 +165,8 @@ define(['jquery',
                         that.$el.append(pagecoverTemplate);
                         $("#pagecover").css({'width': screenWidth+'px'});
                         $("#pagecover").append(imgpopupTemplate);
-                        
 
-                        $("#popup").append('<img src="..' + e.currentTarget.src.slice(16) +'" alt="westernwood">');
+                        $("#popup").append('<img src="..' + e.currentTarget.src.slice(19) +'" alt="westernwood">');
                        
                         $("#close_popup").click(function() {
                             $("#popup").remove();
